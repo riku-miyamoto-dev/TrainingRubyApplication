@@ -20,9 +20,9 @@ RENAMES = {
 csv_data = File.read(File.join(__dir__, 'personal_infomation.csv'))
 
 #parseメソッドを使ってパースを行う。その際にリネームを行う
-personal_info_data = CSV.parse(csv_data, headers:true, header_converters:  lambda{|h| RENAMES[h]})
+personal_info_data = CSV.parse(csv_data, headers:true, header_converters: lambda{|h| RENAMES[h]})
 
-#mapメソッドを用いて配列にパースしたデータ構造を保存
+#mapメソッドを用いて配列にパースしたデータ構造をハッシュに変換して保存
 personal_info_array = personal_info_data.map(&:to_h)
 
 #each do で配列に対して名前のみを取り出す処理を行う
