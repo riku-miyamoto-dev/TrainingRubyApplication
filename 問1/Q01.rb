@@ -18,7 +18,7 @@ RENAMES = {
 
 #ファイルパスを取得し、csvファイルを読み込む 
 csv_data = File.read(File.join(__dir__, 'personal_infomation.csv'))
-p csv_data
+
 #parseメソッドを使ってパースを行う。その際にリネームを行う 
 # personal_info_dataの例 クラスはCSV::Table 　データ"no" =>"1" ,"namae"=>"三井 碧透","denwa"=>"080-2422-3182"
 personal_info_data = CSV.parse(csv_data, headers:true)
