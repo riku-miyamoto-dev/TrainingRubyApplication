@@ -36,8 +36,8 @@ personal_info_ary = csv_data.map do |row|
 end
 
 # # each do で配列に対して名前のみを取り出す処理を行う
-# personal_info_ary.each do |user|
-#   puts user.name
-#   puts user.address
-#   puts user.age
-# end
+personal_info_ary.each do |user|
+  puts user.name
+  puts user.address
+  puts user.age
+end
