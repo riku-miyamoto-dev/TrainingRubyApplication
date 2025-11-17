@@ -1,6 +1,6 @@
 # クラス定義
 class PersonalInfo
-  # ゲッターというインスタンス変数をクラス定義外でも呼び出せるようにするものを設定
+  #メソッドでスコープ外でも使う変数を定義
   attr_accessor :id, :name, :address1, :address2, :address3, :address4, :address5, :birthday
 
   def initialize(row)
@@ -15,17 +15,12 @@ class PersonalInfo
   end
 
   def address
-    # 配列からcompactメソッドでnilを削除し、joinメソッドで配列を連結し文字列に返す
     [@address1, @address2, @address3, @address4, @address5].compact.join
   end
 
   def age
-    # 年齢を計算するための現在時刻を取得
-    today = Date.today
-    # Time-Timeにして計算を可能にするため string => Time 変換をparseメソッドで行う 
-    birthday = Date.parse(@birthday)
-    # 計算結果が日数で出力されるため、年間の日数で割る。年齢を求める際、小数点以下は不要なのでfloorメソッドで切り捨て
-    age = ((today - birthday)/365).floor(0)
+    # Time-Timeで日数計算を行う。今日の日付から生年月日を引き、年間の日数で割る。その際小数点以下は不要なのでfloorメソッドで切り捨てる。@birthdayはTimeクラスではないためparseで変換
+    age = ((Date.today- Date.parse(@birthday))/365).floor(0)
     age
   end
 

@@ -19,23 +19,17 @@ RENAMES = {
 }
 
 
-# ファイルパスを取得し、csvファイルを読み込む
 file_data = File.read(File.join(__dir__,'..', 'personal_infomation.csv'))
-
-# parseメソッドを使ってパースを行う。
 csv_data = CSV.parse(file_data, headers:true,)
-# mapメソッドを用いて配列にパースしたデータ構造をクラスで宣言する。csv_data.class => CSV::Tableなのでmapメソッドで１行ずつ分解され処理を行う。
 users = csv_data.map do |row|
   renames_row = row.to_h.transform_keys do |h|
     RENAMES[h]
   end
-# クラスのインスタンスを定義
   PersonalInfo.new(renames_row)
 end
 
-# jsonファイルを保存するためにnewnメソッドをw(書き込み)で使用,users.jsonという名のfileインスタンスの作成
+# jsonファイルを保存するためにnewnメソッドをw(書き込み)で使用
 data = File.new("users.json","w")
-# pretty_generateでjson形式に変換, printで、newで開いたusers.jsonファイルに書き込み
-data.print(JSON.pretty_generate(users.map(&:to_h)))
-# newを使ったため〆る必要がある
+data.print(JSON.pretty_generate(users.map{|h|h.to_h}))
+# newを使ったため閉じる
 data.close
