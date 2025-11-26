@@ -27,4 +27,8 @@ class PersonalInfo
     age = ((today - birthday)/365).floor(0)
     age
   end
+
+  def prefecture
+    @address1
+  end
 end
