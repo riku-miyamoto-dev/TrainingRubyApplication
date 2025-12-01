@@ -21,7 +21,7 @@ RENAMES = {
 file_data = File.read(File.join(__dir__,'..', 'personal_infomation.csv'))
 csv_data = CSV.parse(file_data, headers:true,)
 
-# ヘッダー名を変更
+# ヘッダー名を日本語→英語に変更
 users = csv_data.map do |row|
   PersonalInfo.new(row.to_h.transform_keys {|h|RENAMES[h]})
 end
@@ -30,12 +30,13 @@ end
 prefecture_sum = Hash.new(0)
 prefecture_count = Hash.new(0)
 prefecture_avg = Hash.new(0)
-
-# 都道府県別合計年齢及び加算回数を記録
+# 都道府県別合計年齢,都道府県別加算回数を記録
 users.each do |h|
-  prefecture_sum[h.prefecture] += h.age  
-  prefecture_count[h.prefecture] += 1
+  prefecture_sum[h.address1] += h.age  
+  prefecture_count[h.address1] += 1
 end
+
+
 
 # 平均年齢の計算　小数点以下も求めたいためfloatに変換
 prefecture_sum.each do|prefecture, sum|
@@ -44,10 +45,11 @@ end
 
 # CSVファイルを作成し、書き込むため modeを"w"で指定
 data = CSV.open("avg_age.csv", "w") do |data|
+  p data
   # CSVのヘッダー部分を作成
   data.add_row(["都道府県", "平均年齢"])
   # 都道府県をCSVに保存
-  prefecture_avg.each{|prefecture, avg|
+  prefecture_avg.each do |prefecture, avg|
     data.add_row([prefecture, avg.floor(2)])
-  }
+  end
 end
