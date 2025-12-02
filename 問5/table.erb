@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <th scope = "col">id</th>
+            <th scope = "col">name</th>
+            <th scope = "col">age</th>
+            <th scope = "col">address</th>
+        </thead>
+        <tbody>
+        <% users.each do |user| %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.age %></td>
+                <td><%= user.address %></td>
+            </tr>
+        </tbody>
+        <%end%>
+    </table>
+</body>
+</html>
