@@ -35,4 +35,3 @@ end
 # eRubyスクリプトからerbオブジェクトを生成し、HTMLの作成
 erb_data = ERB.new(File.read("table.erb"))
 File.write("table.html", erb_data.result)
-puts erb_data.result
