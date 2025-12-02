@@ -19,7 +19,7 @@ class PersonalInfo
   end
 
   def age
-    # Time-Timeで日数計算を行う。今日の日付から生年月日を引き、年間の日数で割る。その際小数点以下は不要なのでfloorメソッドで切り捨てる。@birthdayはTimeクラスではないためparseで変換
+    # Data-Dataで日数計算を行う。今日の日付から生年月日を引き、年間の日数で割る。その際小数点以下は不要なのでfloorメソッドで切り捨てる。@birthdayはDataクラスではないためparseで変換
     age = ((Date.today- Date.parse(@birthday))/365).floor(0)
   end
 end
