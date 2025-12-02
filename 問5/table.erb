@@ -14,12 +14,12 @@
             <th scope = "col">address</th>
         </thead>
         <tbody>
-        <%users.each do |user|%>
+        <% users.each do |user| %>
             <tr>
-                <td><%= user.id%></td>
-                <td><%= user.name%></td>
-                <td><%= user.age%></td>
-                <td><%= user.address%></td>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.age %></td>
+                <td><%= user.address %></td>
             </tr>
         </tbody>
         <%end%>
